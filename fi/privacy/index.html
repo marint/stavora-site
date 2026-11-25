@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0a1020">
+<title>Stavora – tietosuoja</title>
+<meta name="description" content="Stavora ei kerää tietoja. Nuotit ja merkinnät pysyvät laitteellasi.">
+<link rel="alternate" hreflang="en" href="../../privacy/">
+<link rel="alternate" hreflang="fi" href="../../fi/privacy/">
+<link rel="alternate" hreflang="x-default" href="../../privacy/">
+<style>
+  /* The nav's own size, so its text sits on the same line as the other links */
+  .lang { display: inline-flex; align-items: baseline; gap: 6px; font-size: 15px; font-weight: 600; letter-spacing: 0.04em; }
+  .lang a { color: inherit; opacity: 0.6; text-decoration: none; }
+  .lang a:hover { opacity: 1; }
+  .lang a[aria-current] { opacity: 1; }
+  .lang span { opacity: 0.35; }
+</style>
+<link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="../../assets/favicon-96.png">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+</head>
+<body>
+<style>
+  :root { --ink:#eaf1ff; --ink-soft:#b4c3e0; --ground:#0a1020; --line:#22325a; --sky:#7cc1ff;
+    --f:-apple-system,"SF Pro Text","Segoe UI",Roboto,system-ui,sans-serif; }
+  @media (prefers-color-scheme: light) { :root { --ink:#0f1d3d; --ink-soft:#3a4d75; --ground:#f5f8ff; --line:#d9e3f6; --sky:#1f5fe0; } }
+  body { margin:0; background:var(--ground); color:var(--ink); font:400 17px/1.65 var(--f); }
+  main { width:min(760px, 100% - 32px); margin:0 auto; padding:48px 0 80px; }
+  a { color:var(--sky); }
+  .brand { display:flex; align-items:center; gap:10px; font-weight:700; text-decoration:none; color:var(--ink); }
+  .brand img { width:34px; height:34px; border-radius:9px; }
+  h1 { font-size:clamp(32px,4vw,44px); margin:36px 0 4px; letter-spacing:-0.02em; }
+  h2 { font-size:21px; margin:32px 0 6px; }
+  p, li { color:var(--ink-soft); }
+  .updated { color:var(--ink-soft); font-size:14px; margin:0 0 24px; }
+  footer { margin-top:48px; padding-top:20px; border-top:1px solid var(--line); }
+  .top { display:flex; align-items:center; justify-content:space-between; gap:16px; }
+</style>
+<main>
+  <div class="top"><a class="brand" href="../../fi/"><img src="../../assets/icon-512.png" alt="" width="34" height="34">Stavora</a><span class="lang"><a href="../../privacy/" hreflang="en" onclick="try{localStorage.setItem('stavora-lang','en')}catch(e){}">EN</a><span aria-hidden="true">|</span><a aria-current="true" hreflang="fi">FI</a></span></div>
+  <h1>Tietosuoja</h1>
+  <p class="updated">Päivitetty 23.11.2026</p>
+  <p>Stavora ei kerää, tallenna eikä lähetä henkilötietoja.</p><h2>Mitä sovellus käsittelee</h2><p>Sovellus avaa vain PDF-tiedostot, jotka itse valitset tai avaat siinä. Ne kopioidaan sovelluksen omaan tallennustilaan laitteellesi. Kynämerkinnät, rajaukset, settilistat ja asetukset tallentuvat samaan paikkaan.</p><h2>Mitä sovellus ei tee</h2><ul><li>Ei käyttäjätilejä eikä kirjautumista.</li><li>Ei analytiikkaa, mainoksia eikä seurantaa.</li><li>Ei verkkoyhteyksiä: nuotit ja merkinnät eivät lähde laitteelta.</li></ul><h2>Tietojen poistaminen</h2><p>Nuotin voi poistaa sovelluksessa, jolloin myös sen merkinnät poistuvat. Sovelluksen poistaminen poistaa kaikki sen tiedot laitteelta.</p><h2>Käyttöoikeudet</h2><p>Sovellus ei pyydä erillisiä käyttöoikeuksia. Tiedostot valitaan järjestelmän omalla tiedostovalitsimella, joka antaa sovellukselle pääsyn vain valittuihin tiedostoihin.</p>
+  <footer><a href="../../fi/">Etusivulle</a></footer>
+</main>
+</body>
+</html>
