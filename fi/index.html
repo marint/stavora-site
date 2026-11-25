@@ -128,6 +128,9 @@
   .showcase figcaption b { display: block; color: var(--ink); font-size: 1.05em; }
 
   .split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 72px); align-items: center; }
+  
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(12px, 2vw, 24px); }
+  #choir .eyebrow { margin-bottom: 14px; }
   @media (max-width: 860px) { .split { grid-template-columns: 1fr; } }
   .split .tablet { max-width: 400px; justify-self: center; }
   .checks { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
@@ -157,6 +160,7 @@
     <nav>
       <a class="optional" href="#features">Ominaisuudet</a>
       <a class="optional" href="#setlists">Settilistat</a>
+      <a class="optional" href="#choir">Kuorolle</a>
       <a href="../fi/docs/">Ohjeet</a>
       <a href="../fi/privacy/">Tietosuoja</a>
       <span class="lang"><a href="../" hreflang="en" onclick="try{localStorage.setItem('stavora-lang','en')}catch(e){}">EN</a><span aria-hidden="true">|</span><a aria-current="true" hreflang="fi">FI</a></span>
@@ -209,6 +213,18 @@
           <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></div>
           <h3>Tabletti ja puhelin</h3><p>Suunniteltu tabletille pystyasentoon, toimii myös puhelimessa. Vaakatasossa tabletti näyttää kaksi sivua, puhelin etenee nuottirivi kerrallaan.</p>
         </div>
+        <div class="feature">
+          <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4h11l-1.5 4L16 12H5"/></svg></div>
+          <h3>Harjoiteltavat kohdat</h3><p>Merkitse lipulla kohdat, joita pitää treenata. Kirjasto näyttää ne yhdellä napautuksella ja avaa suoraan oikean sivun.</p>
+        </div>
+        <div class="feature">
+          <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
+          <h3>Jaa kuorolle tai bändille</h3><p>Settilista, nuotit ja merkinnät yhdessä paketissa, päivitykset pelkkinä merkintöinä. Jokaisen omat merkinnät säilyvät.</p>
+        </div>
+        <div class="feature">
+          <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg></div>
+          <h3>Sävel ja metronomi</h3><p>Aloitussävel koskettimilta ja metronomi napautustempolla nuotin päällä kelluvassa paneelissa, myös äänettömällä.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -254,6 +270,42 @@
         </ul>
       </div>
       <div class="tablet"><img src="../assets/screens/setlist-play.jpg" alt="Settilista soitossa: kappaleet ja sivut alareunassa" width="1000" height="1600" loading="lazy"></div>
+    </div>
+  </section>
+
+  
+  <section id="choir" class="alt">
+    <div class="wrap">
+      <span class="eyebrow">Uutta</span>
+      <h2>Koko kuoro samalla sivulla</h2>
+      <p class="intro">Kuoronjohtaja merkitsee harjoiteltavat kohdat ja jakaa settilistan merkintöineen. Jokainen saa ne omaan nuottiinsa, ja omat merkinnät pysyvät omina.</p>
+      <div class="showcase">
+        <figure>
+          <div class="tablet"><img src="../assets/screens/practice.jpg" alt="Harjoiteltava kohta merkittynä oranssilla laatikolla ja lipulla" width="1000" height="1600" loading="lazy"></div>
+          <figcaption><b>Harjoiteltavat kohdat.</b> Lipulla merkitty kohta löytyy kirjastosta yhdellä napautuksella, ja sen saa pois, kun se on harjoiteltu.</figcaption>
+        </figure>
+        <figure>
+          <div class="tablet"><img src="../assets/screens/share.jpg" alt="Settilistan jako: nuotit ja merkinnät tai vain merkinnät" width="1000" height="1600" loading="lazy"></div>
+          <figcaption><b>Jaa kuorolle tai bändille.</b> Koko paketti kauden alkuun vaikka Driveen, viikon päivitykset WhatsAppiin. Ei tiliä eikä palvelinta.</figcaption>
+        </figure>
+        <figure>
+          <div class="tablet"><img src="../assets/screens/tools.jpg" alt="Sävelpilli koskettimineen nuotin päällä" width="1000" height="1600" loading="lazy"></div>
+          <figcaption><b>Sävel ja metronomi.</b> Aloitussävel ja tempo suoraan nuotista, ilman toista sovellusta.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="themes">
+    <div class="wrap split">
+      <div>
+        <h2>Vaalea tai tumma</h2>
+        <p class="intro">Stavora seuraa laitteen asetusta, tai valitset itse. Sivun ympäristö pysyy sellaisena kuin sen asetat – vaikka tummana konsertissa.</p>
+      </div>
+      <div class="pair">
+        <div class="tablet"><img src="../assets/screens/library.jpg" alt="Kirjasto tummana" width="1000" height="1600" loading="lazy"></div>
+        <div class="tablet"><img src="../assets/screens/library-light.jpg" alt="Kirjasto vaaleana" width="1000" height="1600" loading="lazy"></div>
+      </div>
     </div>
   </section>
 

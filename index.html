@@ -129,6 +129,9 @@
   .showcase figcaption b { display: block; color: var(--ink); font-size: 1.05em; }
 
   .split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 72px); align-items: center; }
+  
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(12px, 2vw, 24px); }
+  #choir .eyebrow { margin-bottom: 14px; }
   @media (max-width: 860px) { .split { grid-template-columns: 1fr; } }
   .split .tablet { max-width: 400px; justify-self: center; }
   .checks { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
@@ -158,6 +161,7 @@
     <nav>
       <a class="optional" href="#features">Features</a>
       <a class="optional" href="#setlists">Setlists</a>
+      <a class="optional" href="#choir">For choirs</a>
       <a href="./docs/">Help</a>
       <a href="./privacy/">Privacy</a>
       <span class="lang"><a aria-current="true" hreflang="en">EN</a><span aria-hidden="true">|</span><a href="./fi/" hreflang="fi" onclick="try{localStorage.setItem('stavora-lang','fi')}catch(e){}">FI</a></span>
@@ -210,6 +214,18 @@
           <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></div>
           <h3>Tablet and phone</h3><p>Designed for a tablet in portrait, and works on a phone too. In landscape a tablet shows two pages; a phone moves on one line of music at a time.</p>
         </div>
+        <div class="feature">
+          <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4h11l-1.5 4L16 12H5"/></svg></div>
+          <h3>Passages to practise</h3><p>Mark with the flag what needs work. The library lists those scores with one tap and opens each at the right page.</p>
+        </div>
+        <div class="feature">
+          <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
+          <h3>Share with the choir or band</h3><p>The setlist, scores and markings in one package, and updates as markings only. Everyone’s own markings stay.</p>
+        </div>
+        <div class="feature">
+          <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg></div>
+          <h3>Pitch and metronome</h3><p>The starting note from a keyboard and a metronome with tap tempo, floating over the score, with the silent switch on too.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -255,6 +271,42 @@
         </ul>
       </div>
       <div class="tablet"><img src="./assets/screens/setlist-play.jpg" alt="A setlist being played, with pieces and pages at the bottom" width="1000" height="1600" loading="lazy"></div>
+    </div>
+  </section>
+
+  
+  <section id="choir" class="alt">
+    <div class="wrap">
+      <span class="eyebrow">New</span>
+      <h2>The whole choir on the same page</h2>
+      <p class="intro">The conductor marks the passages to practise and shares the setlist with the markings. Everyone gets them in their own scores, and their own markings stay their own.</p>
+      <div class="showcase">
+        <figure>
+          <div class="tablet"><img src="./assets/screens/practice.jpg" alt="A passage to practise marked with an orange box and a flag" width="1000" height="1600" loading="lazy"></div>
+          <figcaption><b>Passages to practise.</b> A passage marked with the flag is a tap away in the library, and gone again once practised.</figcaption>
+        </figure>
+        <figure>
+          <div class="tablet"><img src="./assets/screens/share.jpg" alt="Sharing a setlist: scores and markings, or markings only" width="1000" height="1600" loading="lazy"></div>
+          <figcaption><b>Share with the choir or band.</b> The whole package for the start of the season in Drive, the week’s updates in WhatsApp. No account, no server.</figcaption>
+        </figure>
+        <figure>
+          <div class="tablet"><img src="./assets/screens/tools.jpg" alt="The pitch pipe’s keyboard over the score" width="1000" height="1600" loading="lazy"></div>
+          <figcaption><b>Pitch and metronome.</b> The starting note and the tempo right from the score, without another app.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="themes">
+    <div class="wrap split">
+      <div>
+        <h2>Light or dark</h2>
+        <p class="intro">Stavora follows your device, or you choose. Around the page stays as you set it – dark on stage, if you like.</p>
+      </div>
+      <div class="pair">
+        <div class="tablet"><img src="./assets/screens/library.jpg" alt="The library in the dark theme" width="1000" height="1600" loading="lazy"></div>
+        <div class="tablet"><img src="./assets/screens/library-light.jpg" alt="The library in the light theme" width="1000" height="1600" loading="lazy"></div>
+      </div>
     </div>
   </section>
 
