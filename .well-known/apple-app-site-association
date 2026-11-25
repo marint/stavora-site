@@ -1,0 +1,10 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["3S9YP4262S.app.stavora"],
+        "components": [{ "/": "/s", "comment": "A conductor's update link" }, { "/": "/s/" }]
+      }
+    ]
+  }
+}
