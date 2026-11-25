@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0a1020">
+<title>Stavora – sheet music on a tablet, for choirs and players</title>
+<meta name="description" content="A PDF sheet music reader for choir singers and musicians: automatic cropping even for scans, pen markings, setlists and page-turn pedals.">
+<link rel="alternate" hreflang="en" href="./">
+<link rel="alternate" hreflang="fi" href="./fi/">
+<link rel="alternate" hreflang="x-default" href="./">
+<script>try{var c=localStorage.getItem('stavora-lang'),b=(navigator.languages&&navigator.languages[0])||navigator.language||'';if(c==='fi'||(!c&&/^fi\b/i.test(b)))location.replace('fi/'+location.hash)}catch(e){}</script>
+<style>
+  /* The nav's own size, so its text sits on the same line as the other links */
+  .lang { display: inline-flex; align-items: baseline; gap: 6px; font-size: 15px; font-weight: 600; letter-spacing: 0.04em; }
+  .lang a { color: inherit; opacity: 0.6; text-decoration: none; }
+  .lang a:hover { opacity: 1; }
+  .lang a[aria-current] { opacity: 1; }
+  .lang span { opacity: 0.35; }
+</style>
+<link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="./assets/favicon-96.png">
+<link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
+</head>
+<body>
+<style>
+  :root {
+    --ink: #eaf1ff;
+    --ink-soft: #b4c3e0;
+    --ink-mute: #8193b5;
+    --ground: #0a1020;
+    --ground-2: #0e1730;
+    --panel: #131e3a;
+    --line: #22325a;
+    --sky: #7cc1ff;
+    --blue: #3d8bf5;
+    --blue-deep: #1f5fe0;
+    --navy: #102a7a;
+    --grad: linear-gradient(135deg, #7cc1ff 0%, #3d8bf5 55%, #1f5fe0 100%);
+    --shadow: 0 40px 90px -40px rgba(2, 8, 30, 0.9);
+    --radius: 20px;
+    --f: -apple-system, "SF Pro Text", "Segoe UI", Roboto, system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --ink: #0f1d3d;
+      --ink-soft: #3a4d75;
+      --ink-mute: #5d6f94;
+      --ground: #f5f8ff;
+      --ground-2: #ebf1fd;
+      --panel: #ffffff;
+      --line: #d9e3f6;
+      
+      --sky: #1f5fe0;
+      --shadow: 0 40px 80px -40px rgba(25, 50, 110, 0.45);
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font: 400 clamp(15px, 0.9vw + 12px, 18px)/1.6 var(--f);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--sky); }
+  img { display: block; max-width: 100%; }
+  .wrap { width: min(1160px, 100% - 32px); margin-inline: auto; }
+
+  
+  header { position: sticky; top: 0; z-index: 10; backdrop-filter: blur(14px); background: color-mix(in srgb, var(--ground) 82%, transparent); border-bottom: 1px solid var(--line); }
+  header .wrap { display: flex; align-items: center; gap: 16px; height: 64px; }
+  .brand { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-weight: 700; font-size: 19px; }
+  .brand img { width: 34px; height: 34px; border-radius: 9px; }
+  nav { margin-left: auto; display: flex; gap: 22px; font-size: 15px; }
+  nav a { color: var(--ink-soft); text-decoration: none; }
+  nav a:hover { color: var(--ink); }
+  @media (max-width: 640px) { nav a.optional { display: none; } nav { gap: 14px; } }
+
+  
+  .hero { padding: clamp(40px, 7vw, 96px) 0 clamp(40px, 6vw, 80px); }
+  .hero .wrap { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(28px, 5vw, 72px); align-items: center; }
+  @media (max-width: 860px) { .hero .wrap { grid-template-columns: 1fr; } }
+  .eyebrow { display: inline-flex; gap: 8px; align-items: center; font-size: 14px; font-weight: 600; color: var(--sky); background: color-mix(in srgb, var(--blue) 14%, transparent); border: 1px solid color-mix(in srgb, var(--blue) 35%, transparent); padding: 6px 12px; border-radius: 999px; }
+  
+  .hero .wrap > div:first-child { container-type: inline-size; }
+  h1 { font-size: clamp(30px, 9.6cqi, 66px); line-height: 1.04; letter-spacing: -0.025em; margin: 20px 0 18px; }
+  h1 > span { display: block; white-space: nowrap; }
+  h1 em { font-style: normal; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .lead { font-size: clamp(17px, 1.3vw + 12px, 21px); color: var(--ink-soft); max-width: 34em; margin: 0 0 30px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; height: 50px; padding: 0 22px; border-radius: 14px; font-weight: 650; text-decoration: none; font-size: 16px; }
+  .btn.primary { background: var(--grad); color: #fff; box-shadow: 0 12px 30px -12px rgba(31, 95, 224, 0.8); }
+  .btn.ghost { color: var(--ink); border: 1px solid var(--line); background: var(--panel); }
+  .soon { font-size: 14px; color: var(--ink-mute); }
+
+  
+  
+  .hero .wrap > *, .split > *, .showcase > * { min-width: 0; }
+  
+  .tablet { width: 100%; position: relative; background: #05070d; border-radius: 26px; padding: 14px; box-shadow: var(--shadow), inset 0 0 0 1px rgba(255, 255, 255, 0.08); }
+  
+  .tablet img { display: block; width: 100%; height: auto; border-radius: 4px; }
+  .hero .tablet { max-width: 440px; justify-self: center; }
+  .tablet.wide { max-width: 980px; margin: 0 auto; }
+
+  
+  section { padding: clamp(56px, 8vw, 110px) 0; }
+  section.alt { background: var(--ground-2); border-block: 1px solid var(--line); }
+  h2 { font-size: clamp(28px, 3.2vw, 42px); line-height: 1.12; letter-spacing: -0.02em; margin: 0 0 14px; }
+  .intro { color: var(--ink-soft); max-width: 40em; margin: 0 0 40px; font-size: 1.08em; }
+  
+  h1, h2, h3, .intro, .lead { text-wrap: balance; }
+
+  .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  @media (max-width: 960px) { .features { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .features { grid-template-columns: 1fr; } }
+  .feature { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
+  .feature .ico { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: color-mix(in srgb, var(--blue) 16%, transparent); color: var(--sky); margin-bottom: 14px; }
+  .feature h3 { margin: 0 0 6px; font-size: 19px; }
+  .feature p { margin: 0; color: var(--ink-soft); font-size: 0.95em; }
+
+  .showcase { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 3vw, 40px); align-items: start; }
+  @media (max-width: 760px) { .showcase { grid-template-columns: 1fr; max-width: 420px; margin-inline: auto; } }
+  .showcase figure { margin: 0; }
+  .showcase figcaption { margin-top: 16px; text-align: center; color: var(--ink-soft); font-size: 0.95em; }
+  .showcase figcaption b { display: block; color: var(--ink); font-size: 1.05em; }
+
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 72px); align-items: center; }
+  @media (max-width: 860px) { .split { grid-template-columns: 1fr; } }
+  .split .tablet { max-width: 400px; justify-self: center; }
+  .checks { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+  .checks li { display: flex; gap: 12px; align-items: flex-start; color: var(--ink-soft); }
+  .checks li::before { content: ""; flex: none; width: 22px; height: 22px; margin-top: 3px; border-radius: 50%; background: var(--grad); -webkit-mask: radial-gradient(circle, #000 60%, transparent 61%); mask: radial-gradient(circle, #000 60%, transparent 61%); }
+  .checks b { color: var(--ink); }
+
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; counter-reset: step; }
+  @media (max-width: 760px) { .steps { grid-template-columns: 1fr; } }
+  .step { counter-increment: step; padding: 24px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--panel); }
+  .step::before { content: counter(step); display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--grad); color: #fff; font-weight: 700; margin-bottom: 14px; }
+  .step h3 { margin: 0 0 6px; font-size: 18px; }
+  .step p { margin: 0; color: var(--ink-soft); font-size: 0.95em; }
+
+  .cta { text-align: center; }
+  .cta .icon { width: 96px; height: 96px; border-radius: 24px; margin: 0 auto 24px; box-shadow: var(--shadow); }
+  .cta .actions { justify-content: center; }
+
+  footer { padding: 40px 0 56px; border-top: 1px solid var(--line); color: var(--ink-mute); font-size: 14px; }
+  footer .wrap { display: grid; gap: 10px; }
+  footer nav { margin: 0; }
+</style>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="./"><img src="./assets/icon-512.png" alt="" width="34" height="34">Stavora</a>
+    <nav>
+      <a class="optional" href="#features">Features</a>
+      <a class="optional" href="#setlists">Setlists</a>
+      <a href="./docs/">Help</a>
+      <a href="./privacy.html">Privacy</a>
+      <span class="lang"><a aria-current="true" hreflang="en">EN</a><span aria-hidden="true">|</span><a href="./fi/" hreflang="fi" onclick="try{localStorage.setItem('stavora-lang','fi')}catch(e){}">FI</a></span>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">For choir singers and musicians</span>
+        <h1><span>More <em>music.</em></span> <span>Less paper.</span></h1>
+        <p class="lead">Stavora trims the empty margins from your PDF scores and straightens crooked scans so the music fills the screen. Mark it with a pen and turn pages with a tap or a pedal – in rehearsal, on stage or practising at home.</p>
+        <div class="actions">
+          <a class="btn primary" href="#features">See the features</a>
+          <span class="soon">Coming to iPad and Android tablets, works on phones too</span>
+        </div>
+      </div>
+      <div class="tablet"><img src="./assets/screens/pen.jpg" alt="Pen mode: colours, highlighters, text, eraser and undo" width="1000" height="1600"></div>
+    </div>
+  </section>
+
+  <section id="features" class="alt">
+    <div class="wrap">
+      <h2>Made for rehearsals and concerts</h2>
+      <p class="intro">In rehearsal the music has to be big, the markings have to stay, and the page has to turn without fumbling. Everything else comes second.</p>
+      <div class="features">
+        <div class="feature">
+          <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 2v14a2 2 0 0 0 2 2h14M18 22V8a2 2 0 0 0-2-2H2"/></svg></div>
+          <h3>Automatic cropping</h3><p>Empty margins are trimmed on import, scanned scores included. Notes written in the margins stay, hole punches and specks go, and grey scanned paper turns white.</p>
+        </div>
+        <div class="feature">
+          <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></div>
+          <h3>Pen markings</h3><p>Write straight onto the score: four colours, a highlighter, text notes, an eraser and undo. With an active stylus you just start writing; your finger turns the page. The original PDF is never changed.</p>
+        </div>
+        <div class="feature">
+          <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></div>
+          <h3>Setlists</h3><p>Put the concert programme together by dragging. After a piece's last page comes the next piece, and the corner shows what's next.</p>
+        </div>
+        <div class="feature">
+          <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="14" width="8" height="6" rx="2"/><rect x="13" y="14" width="8" height="6" rx="2"/><path d="M7 14V9a5 5 0 0 1 10 0v5"/></svg></div>
+          <h3>Page-turn pedals</h3><p>Bluetooth pedals and keyboards turn pages: arrow keys, Page Up/Down, Space and Enter.</p>
+        </div>
+        <div class="feature">
+          <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M12 18v-6M9 15l3 3 3-3"/></svg></div>
+          <h3>From files and the cloud</h3><p>Pick several PDFs at once from the device or a cloud service such as iCloud Drive, Google Drive or Dropbox. You can also open a PDF from another app straight into Stavora, or bring in a whole folder as a ZIP.</p>
+        </div>
+        <div class="feature">
+          <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></div>
+          <h3>Tablet and phone</h3><p>Designed for a tablet in portrait, and works on a phone too. In landscape a tablet shows two pages; a phone moves on one line of music at a time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Everything you need, nothing you don't</h2>
+      <p class="intro">While you read, only the music is on screen. Tap the middle of the page for the tools, or hold a finger still for a moment to start marking.</p>
+      <div class="showcase">
+        <figure>
+          <div class="tablet"><img src="./assets/screens/library.jpg" alt="The library with score previews" width="1000" height="1600" loading="lazy"></div>
+          <figcaption><b>Library</b>Search, sorting and previews.</figcaption>
+        </figure>
+        <figure>
+          <div class="tablet"><img src="./assets/screens/reading.jpg" alt="A score page in portrait, marked with a breath mark, highlighted lyrics, a circled note and a text note" width="1000" height="1600" loading="lazy"></div>
+          <figcaption><b>Reading</b>Just the music and your markings.</figcaption>
+        </figure>
+        <figure>
+          <div class="tablet"><img src="./assets/screens/crop.jpg" alt="A scanned score in the crop view: the page straightened, the edges draggable" width="1000" height="1600" loading="lazy"></div>
+          <figcaption><b>Crop</b>Scans are straightened and cropped, by hand if needed.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="landscape" class="alt">
+    <div class="wrap">
+      <h2>Two pages at a time</h2>
+      <p class="intro">Turn the tablet to landscape to see two pages side by side and turn less often. Your markings come along.</p>
+      <div class="tablet wide"><img src="./assets/screens/spread.jpg" alt="Two pages side by side in landscape" width="1600" height="1000" loading="lazy"></div>
+    </div>
+  </section>
+
+  <section id="setlists">
+    <div class="wrap split">
+      <div>
+        <h2>A whole concert as one score</h2>
+        <p class="intro">A setlist puts its pieces one after another like a single booklet, so the page turns the same way all evening.</p>
+        <ul class="checks">
+          <li><span><b>Straight to the next piece.</b> Forward from a piece's last page opens the next piece; back from its first page opens the end of the previous one.</span></li>
+          <li><span><b>Jump anywhere.</b> The toolbar lists every piece and page.</span></li>
+          <li><span><b>Easy to build.</b> Pick the pieces in the order you want and reorder them by dragging. A folder imported as a ZIP becomes a setlist right away.</span></li>
+        </ul>
+      </div>
+      <div class="tablet"><img src="./assets/screens/setlist-play.jpg" alt="A setlist being played, with pieces and pages at the bottom" width="1000" height="1600" loading="lazy"></div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <h2>Getting started</h2>
+      <p class="intro">No accounts, no sign-up.</p>
+      <div class="steps">
+        <div class="step"><h3>Import your scores</h3><p>Pick PDFs from the device or a cloud service, or open them from another app straight into Stavora.</p></div>
+        <div class="step"><h3>Read and mark</h3><p>The score comes cropped. Mark what the conductor says.</p></div>
+        <div class="step"><h3>Build a setlist</h3><p>At the concert, turn from piece to piece with a tap or a pedal.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap split">
+      <div>
+        <h2>Your scores stay with you</h2>
+        <p class="intro">Stavora runs entirely on your device.</p>
+        <ul class="checks">
+          <li><span>No account, no ads, no tracking.</span></li>
+          <li><span>PDFs and markings are stored only on the device. The app never sends them anywhere.</span></li>
+          <li><span>PDFs are drawn by the operating system's own PDF engine.</span></li>
+          <li><span>A backup is one ZIP file that you save wherever you like.</span></li>
+        </ul>
+      </div>
+      <div class="tablet"><img src="./assets/screens/settings.jpg" alt="Settings: colour around the page, tap to turn, pen, import, language and backup" width="1000" height="1600" loading="lazy"></div>
+    </div>
+  </section>
+
+  <section class="cta alt">
+    <div class="wrap">
+      <img class="icon" src="./assets/icon-512.png" alt="" width="96" height="96">
+      <h2>Coming soon</h2>
+      <p class="intro" style="margin-inline:auto">Stavora is in testing on iPad and Android tablets. It works on a phone too, for the day the tablet stays at home. It will be in the stores soon.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <nav><a href="./docs/">Help</a> <a href="./privacy.html">Privacy</a></nav>
+    <span>Scores in the screenshots: Mutopia Project (mutopiaproject.org). Janequin: Le Chant des Oyseaux, public domain. Mozart, Brahms, Haydn, Humperdinck, Bruch: CC BY 4.0. Bach: CC BY-SA 4.0. The scanned page is a simulation made from a Mutopia score.</span>
+    <span>© 2026 Stavora</span>
+  </div>
+</footer>
+</body>
+</html>

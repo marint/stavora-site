@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0a1020">
+<title>Stavora – privacy</title>
+<meta name="description" content="Stavora collects no data. Your scores and markings stay on your device.">
+<link rel="alternate" hreflang="en" href="./privacy.html">
+<link rel="alternate" hreflang="fi" href="./fi/privacy.html">
+<link rel="alternate" hreflang="x-default" href="./privacy.html">
+<style>
+  /* The nav's own size, so its text sits on the same line as the other links */
+  .lang { display: inline-flex; align-items: baseline; gap: 6px; font-size: 15px; font-weight: 600; letter-spacing: 0.04em; }
+  .lang a { color: inherit; opacity: 0.6; text-decoration: none; }
+  .lang a:hover { opacity: 1; }
+  .lang a[aria-current] { opacity: 1; }
+  .lang span { opacity: 0.35; }
+</style>
+<link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="./assets/favicon-96.png">
+<link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
+</head>
+<body>
+<style>
+  :root { --ink:#eaf1ff; --ink-soft:#b4c3e0; --ground:#0a1020; --line:#22325a; --sky:#7cc1ff;
+    --f:-apple-system,"SF Pro Text","Segoe UI",Roboto,system-ui,sans-serif; }
+  @media (prefers-color-scheme: light) { :root { --ink:#0f1d3d; --ink-soft:#3a4d75; --ground:#f5f8ff; --line:#d9e3f6; --sky:#1f5fe0; } }
+  body { margin:0; background:var(--ground); color:var(--ink); font:400 17px/1.65 var(--f); }
+  main { width:min(760px, 100% - 32px); margin:0 auto; padding:48px 0 80px; }
+  a { color:var(--sky); }
+  .brand { display:flex; align-items:center; gap:10px; font-weight:700; text-decoration:none; color:var(--ink); }
+  .brand img { width:34px; height:34px; border-radius:9px; }
+  h1 { font-size:clamp(32px,4vw,44px); margin:36px 0 4px; letter-spacing:-0.02em; }
+  h2 { font-size:21px; margin:32px 0 6px; }
+  p, li { color:var(--ink-soft); }
+  .updated { color:var(--ink-soft); font-size:14px; margin:0 0 24px; }
+  footer { margin-top:48px; padding-top:20px; border-top:1px solid var(--line); }
+  .top { display:flex; align-items:center; justify-content:space-between; gap:16px; }
+</style>
+<main>
+  <div class="top"><a class="brand" href="./"><img src="./assets/icon-512.png" alt="" width="34" height="34">Stavora</a><span class="lang"><a aria-current="true" hreflang="en">EN</a><span aria-hidden="true">|</span><a href="./fi/privacy.html" hreflang="fi" onclick="try{localStorage.setItem('stavora-lang','fi')}catch(e){}">FI</a></span></div>
+  <h1>Privacy</h1>
+  <p class="updated">Updated 23 November 2026</p>
+  <p>Stavora does not collect, store or send personal data.</p><h2>What the app handles</h2><p>The app opens only the PDF files you choose or open in it. They are copied into the app's own storage on your device. Pen markings, crops, setlists and settings are stored in the same place.</p><h2>What the app does not do</h2><ul><li>No accounts and no sign-in.</li><li>No analytics, ads or tracking.</li><li>No network connections: your scores and markings never leave the device.</li></ul><h2>Deleting data</h2><p>Deleting a score in the app also deletes its markings. Uninstalling the app removes all of its data from the device.</p><h2>Permissions</h2><p>The app asks for no special permissions. Files are chosen with the system's own file picker, which gives the app access only to the files you pick.</p>
+  <footer><a href="./">Back to the home page</a></footer>
+</main>
+</body>
+</html>

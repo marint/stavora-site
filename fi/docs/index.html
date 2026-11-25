@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0a1020">
+<title>Stavora – käyttöohje</title>
+<meta name="description" content="Näin tuot nuotit, luet ja merkitset niitä, kokoat settilistan ja otat varmuuskopion.">
+<link rel="alternate" hreflang="en" href="../../docs/">
+<link rel="alternate" hreflang="fi" href="../../fi/docs/">
+<link rel="alternate" hreflang="x-default" href="../../docs/">
+<style>
+  /* The nav's own size, so its text sits on the same line as the other links */
+  .lang { display: inline-flex; align-items: baseline; gap: 6px; font-size: 15px; font-weight: 600; letter-spacing: 0.04em; }
+  .lang a { color: inherit; opacity: 0.6; text-decoration: none; }
+  .lang a:hover { opacity: 1; }
+  .lang a[aria-current] { opacity: 1; }
+  .lang span { opacity: 0.35; }
+</style>
+<link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="../../assets/favicon-96.png">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+</head>
+<body>
+<style>
+  :root { --ink:#eaf1ff; --ink-soft:#b4c3e0; --ground:#0a1020; --panel:#131e3a; --line:#22325a; --sky:#7cc1ff;
+    --f:-apple-system,"SF Pro Text","Segoe UI",Roboto,system-ui,sans-serif; }
+  @media (prefers-color-scheme: light) { :root { --ink:#0f1d3d; --ink-soft:#3a4d75; --ground:#f5f8ff; --panel:#ffffff; --line:#d9e3f6; --sky:#1f5fe0; } }
+  body { margin:0; background:var(--ground); color:var(--ink); font:400 17px/1.65 var(--f); }
+  main { width:min(760px, 100% - 32px); margin:0 auto; padding:48px 0 80px; }
+  a { color:var(--sky); }
+  .brand { display:flex; align-items:center; gap:10px; font-weight:700; text-decoration:none; color:var(--ink); }
+  .brand img { width:34px; height:34px; border-radius:9px; }
+  h1 { font-size:clamp(32px,4vw,44px); margin:36px 0 4px; letter-spacing:-0.02em; }
+  h2 { font-size:24px; margin:44px 0 6px; scroll-margin-top:16px; }
+  h3 { font-size:18px; margin:22px 0 2px; }
+  p, li { color:var(--ink-soft); }
+  li { margin:4px 0; }
+  .toc li { margin:0 0 6px; break-inside:avoid; }
+  b { color:var(--ink); font-weight:600; }
+  .lead { margin:0 0 24px; }
+  .toc { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:14px 20px; }
+  .toc ol { margin:0; padding-left:20px; columns:2 220px; }
+  .tip { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:12px 16px; }
+  footer { margin-top:48px; padding-top:20px; border-top:1px solid var(--line); }
+  .top { display:flex; align-items:center; justify-content:space-between; gap:16px; }
+</style>
+<main>
+  <div class="top"><a class="brand" href="../../fi/"><img src="../../assets/icon-512.png" alt="" width="34" height="34">Stavora</a><span class="lang"><a href="../../docs/" hreflang="en" onclick="try{localStorage.setItem('stavora-lang','en')}catch(e){}">EN</a><span aria-hidden="true">|</span><a aria-current="true" hreflang="fi">FI</a></span></div>
+  <h1>Käyttöohje</h1>
+  <p class="lead">Stavora toimii ilman tilejä ja asetuksia. Tässä ovat kaikki toiminnot, myös ne, joita ei heti huomaa.</p>
+  <nav class="toc" aria-label="Sisältö">
+    <ol>
+      <li><a href="#import">Nuottien tuonti</a></li>
+      <li><a href="#reading">Lukeminen</a></li>
+      <li><a href="#marking">Merkinnät</a></li>
+      <li><a href="#crop">Rajaus ja suoristus</a></li>
+      <li><a href="#setlists">Settilistat</a></li>
+      <li><a href="#library">Kirjasto</a></li>
+      <li><a href="#backup">Varmuuskopio ja uusi laite</a></li>
+    </ol>
+  </nav>
+  <h2 id="import">Nuottien tuonti</h2>
+  <p>Paina kirjastossa <b>Tuo</b> ja valitse PDF-tiedostot. Voit valita kerralla useita, ja ne tulevat kirjastoon yhdellä kertaa. Androidilla pidä ensimmäistä tiedostoa painettuna, napauta muut ja paina <b>Valitse</b>. Valitsimesta pääsee pois takaisin-eleellä.</p><h3>Pilvipalvelut</h3><p>Tuonnissa näkyvät laitteen omat kansiot ja ne pilvipalvelut, joiden sovellus on asennettu, esimerkiksi iCloud Drive, Google Drive, Dropbox tai OneDrive.</p><p>iPadilla ja iPhonella iCloud Drive on mukana valmiiksi. Muut palvelut otetaan käyttöön Tiedostot-sovelluksessa: avaa sivupalkin <b>•••</b>-valikko, valitse <b>Muokkaa sivupalkkia</b> ja kytke palvelu päälle kohdassa Sijainnit. Androidilla palvelut näkyvät tiedostovalitsimessa valmiiksi. Sinulle jaetut kansiot löytyvät Google Drivessa kohdasta <b>Jaettu minulle</b>.</p><h3>Toisesta sovelluksesta</h3><p>Avaa PDF esimerkiksi Drivessa, Dropboxissa, sähköpostissa tai Tiedostoissa ja valitse <b>Avaa sovelluksessa</b> tai <b>Jaa → Stavora</b>. Androidilla jakaa voi useita PDF-tiedostoja kerralla. Nuotti avautuu heti.</p><h3>Koko kansio kerralla</h3><p>Tuo kansio ZIP-tiedostona. Google Drive ja Dropbox pakkaavat kansion ZIPiksi, kun lataat sen, ja Tiedostot-sovelluksessa kansion saa pakattua valinnalla <b>Pakkaa</b>. Nuotit tulevat samassa järjestyksessä kuin kansiossa, ja sovellus tarjoutuu tekemään niistä kansion nimisen settilistan.</p><p class="tip">Saman tiedoston tuominen uudelleen ei tee kaksoiskappaletta, vaan avaa jo kirjastossa olevan nuotin merkintöineen.</p>
+  <h2 id="reading">Lukeminen</h2>
+  <ul><li><b>Sivun kääntö:</b> napauta sivun oikeaa tai vasenta reunaa tai pyyhkäise sivuttain. Reunojen leveyden voi säätää asetuksissa.</li><li><b>Työkalut:</b> napauta sivun keskeltä. Alareunassa näkyvät kaikki sivut, ja niistä pääsee suoraan haluamalleen sivulle.</li><li><b>Zoomaus:</b> nipistä. Zoomattua sivua vieritetään yhdellä sormella, ja kaksoisnapautus palauttaa koko sivun.</li><li><b>Vaakatasossa</b> tabletti näyttää kaksi sivua rinnakkain. Puhelimessa sivu täyttää leveyden ja kääntö etenee nuottirivi kerrallaan.</li><li><b>Sulkeminen:</b> takaisin-nuoli tai pitkä pyyhkäisy ylöspäin. Kun avaat nuotin kahden tunnin sisällä uudelleen, se jatkuu samalta sivulta, muuten se alkaa alusta.</li><li><b>Pedaalit:</b> Bluetooth-sivunkääntöpedaalit ja näppäimistöt toimivat ilman asetuksia: nuolinäppäimet, Page Up/Down, välilyönti ja Enter.</li></ul><p>Sovellus muistaa, mihin sivuun jäit, ja näyttö pysyy päällä nuottia luettaessa.</p>
+  <h2 id="marking">Merkinnät</h2>
+  <p>Kynätila avautuu työkalurivin kynäpainikkeesta tai pitämällä sormea hetken paikallaan sivulla. Valittavana ovat kynä neljällä värillä, korostuskynä, teksti (<b>Aa</b>), pyyhekumi ja kumoa. Sivua voi vaihtaa kynätilassakin. Tila suljetaan painamalla <b>✓</b>.</p><h3>Teksti</h3><p>Valitse <b>Aa</b> ja napauta kohtaa, johon haluat tekstin. Kirjoita teksti suoraan nuottiin. Olemassa olevaa tekstiä muokataan napauttamalla ja siirretään vetämällä.</p><h3>Kynällä ilman kynätilaa</h3><p>Aktiivikynällä (Apple Pencil, Tab Pen tms.) voit kirjoittaa suoraan lukutilassa: kynä piirtää ja sormi kääntää sivua. Viimeisen merkinnän kumoamiseen ilmestyy hetkeksi <b>Kumoa</b>-painike. Kynätilassa voit asettaa <b>Vain kynä piirtää</b> -asetuksen, jolloin sormi ei piirrä vahingossa.</p><p class="tip">Merkinnät tallentuvat erikseen, eikä alkuperäistä PDF:ää muuteta.</p>
+  <h2 id="crop">Rajaus ja suoristus</h2>
+  <p>Tuonnissa sovellus rajaa tyhjät marginaalit pois ja suoristaa vinoon skannatut sivut. Reunoille kirjoitetut merkinnät säilyvät, ja rei'itykset ja roskat jäävät pois.</p><p>Rajausta voi säätää käsin työkalurivin rajauspainikkeesta. Vedä reunoja: sama rajaus koskee kaikkia sivuja. Vinoa sivua voi kääntää nuolilla 0,1° kerrallaan. <b>Automaattinen</b> tekee rajauksen ja suoristuksen uudelleen ja <b>Palauta</b> näyttää koko sivun. Jos et halua rajausta tuonnissa, voit kytkeä sen pois asetuksista.</p>
+  <h2 id="setlists">Settilistat</h2>
+  <p>Avaa kirjastosta <b>Settilistat</b> ja valitse <b>Uusi settilista</b>. Napauta kappaleita siinä järjestyksessä kuin ne lauletaan. Järjestystä voi muuttaa vetämällä rivin oikean reunan kahvasta. Nuotteja saa lisättyä settilistaan myös kirjastosta: yhden pitämällä nuottia painettuna, useita kerralla valinnalla <b>Valitse useita</b>.</p><p>Kun painat <b>Aloita</b>, kappaleet ovat peräkkäin kuin yhtenä vihkona: viimeisen sivun jälkeen avautuu seuraavan kappaleen alku. Kappaleen viimeisellä sivulla nurkassa näkyy seuraava kappale, ja työkaluriviltä pääsee hyppäämään mihin tahansa kappaleeseen.</p>
+  <h2 id="library">Kirjasto</h2>
+  <p>Kirjastossa voit hakea nuotteja nimellä ja järjestää ne aakkosjärjestykseen tai viimeksi avattujen mukaan. Hakukentän vieressä olevasta painikkeesta nuotit näkyvät pikkukuvien sijaan listana. Pitkässä aakkosjärjestetyssä listassa oikeassa reunassa on aakkoset: napauta kirjainta tai liu'uta sormea niiden yli.</p><p>Pidä nuottia painettuna, niin voit nimetä sen uudelleen, lisätä sen settilistaan tai poistaa sen. Poistaminen poistaa myös nuotin merkinnät.</p><h3>Useita kerralla</h3><p>Valitse samasta valikosta <b>Valitse useita</b> ja napauta nuotteja. Valitut voi poistaa tai lisätä settilistaan, myös uuteen. Settilistassa jo olevia ei lisätä toiseen kertaan.</p><p>Asetukset (ratas) sisältävät mm. kielen, sivun ympäryksen värin, napautuskääntöjen reunat ja kynäasetukset.</p>
+  <h2 id="backup">Varmuuskopio ja uusi laite</h2>
+  <p>Valitse <b>Asetukset → Varmuuskopio → Tee varmuuskopio</b>. Nuotit, merkinnät, settilistat ja asetukset pakataan yhteen ZIP-tiedostoon, jonka voit tallentaa esimerkiksi Tiedostoihin, iCloud Driveen tai Google Driveen.</p><p>Palauta varmuuskopio tuomalla ZIP <b>Tuo</b>-painikkeella. Palautus vain lisää kirjastoon puuttuvat nuotit ja settilistat, eikä se muuta tai poista kirjastossa jo olevaa.</p><p class="tip">iPhonen ja iPadin iCloud-varmuuskopio sisältää Stavoran tiedot automaattisesti, joten ne palautuvat, kun uusi laite otetaan käyttöön varmuuskopiosta. Laitteiden välillä tiedot eivät synkronoidu. Androidin automaattinen varmuuskopio on rajattu pieneen kokoon, joten siellä kannattaa ottaa varmuuskopio itse.</p>
+  <footer><a href="../../fi/">Etusivulle</a></footer>
+</main>
+</body>
+</html>

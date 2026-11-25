@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0a1020">
+<title>Stavora – nuotit tabletilla kuoroon ja soittoon</title>
+<meta name="description" content="PDF-nuottien lukija kuorolaisille ja muusikoille: automaattinen rajaus myös skannatuille nuoteille, merkinnät kynällä, settilistat ja sivunkääntöpedaalit.">
+<link rel="alternate" hreflang="en" href="../">
+<link rel="alternate" hreflang="fi" href="../fi/">
+<link rel="alternate" hreflang="x-default" href="../">
+<style>
+  /* The nav's own size, so its text sits on the same line as the other links */
+  .lang { display: inline-flex; align-items: baseline; gap: 6px; font-size: 15px; font-weight: 600; letter-spacing: 0.04em; }
+  .lang a { color: inherit; opacity: 0.6; text-decoration: none; }
+  .lang a:hover { opacity: 1; }
+  .lang a[aria-current] { opacity: 1; }
+  .lang span { opacity: 0.35; }
+</style>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="../assets/favicon-96.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+</head>
+<body>
+<style>
+  :root {
+    --ink: #eaf1ff;
+    --ink-soft: #b4c3e0;
+    --ink-mute: #8193b5;
+    --ground: #0a1020;
+    --ground-2: #0e1730;
+    --panel: #131e3a;
+    --line: #22325a;
+    --sky: #7cc1ff;
+    --blue: #3d8bf5;
+    --blue-deep: #1f5fe0;
+    --navy: #102a7a;
+    --grad: linear-gradient(135deg, #7cc1ff 0%, #3d8bf5 55%, #1f5fe0 100%);
+    --shadow: 0 40px 90px -40px rgba(2, 8, 30, 0.9);
+    --radius: 20px;
+    --f: -apple-system, "SF Pro Text", "Segoe UI", Roboto, system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --ink: #0f1d3d;
+      --ink-soft: #3a4d75;
+      --ink-mute: #5d6f94;
+      --ground: #f5f8ff;
+      --ground-2: #ebf1fd;
+      --panel: #ffffff;
+      --line: #d9e3f6;
+      
+      --sky: #1f5fe0;
+      --shadow: 0 40px 80px -40px rgba(25, 50, 110, 0.45);
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font: 400 clamp(15px, 0.9vw + 12px, 18px)/1.6 var(--f);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--sky); }
+  img { display: block; max-width: 100%; }
+  .wrap { width: min(1160px, 100% - 32px); margin-inline: auto; }
+
+  
+  header { position: sticky; top: 0; z-index: 10; backdrop-filter: blur(14px); background: color-mix(in srgb, var(--ground) 82%, transparent); border-bottom: 1px solid var(--line); }
+  header .wrap { display: flex; align-items: center; gap: 16px; height: 64px; }
+  .brand { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-weight: 700; font-size: 19px; }
+  .brand img { width: 34px; height: 34px; border-radius: 9px; }
+  nav { margin-left: auto; display: flex; gap: 22px; font-size: 15px; }
+  nav a { color: var(--ink-soft); text-decoration: none; }
+  nav a:hover { color: var(--ink); }
+  @media (max-width: 640px) { nav a.optional { display: none; } nav { gap: 14px; } }
+
+  
+  .hero { padding: clamp(40px, 7vw, 96px) 0 clamp(40px, 6vw, 80px); }
+  .hero .wrap { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(28px, 5vw, 72px); align-items: center; }
+  @media (max-width: 860px) { .hero .wrap { grid-template-columns: 1fr; } }
+  .eyebrow { display: inline-flex; gap: 8px; align-items: center; font-size: 14px; font-weight: 600; color: var(--sky); background: color-mix(in srgb, var(--blue) 14%, transparent); border: 1px solid color-mix(in srgb, var(--blue) 35%, transparent); padding: 6px 12px; border-radius: 999px; }
+  
+  .hero .wrap > div:first-child { container-type: inline-size; }
+  h1 { font-size: clamp(30px, 9.6cqi, 66px); line-height: 1.04; letter-spacing: -0.025em; margin: 20px 0 18px; }
+  h1 > span { display: block; white-space: nowrap; }
+  h1 em { font-style: normal; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .lead { font-size: clamp(17px, 1.3vw + 12px, 21px); color: var(--ink-soft); max-width: 34em; margin: 0 0 30px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; height: 50px; padding: 0 22px; border-radius: 14px; font-weight: 650; text-decoration: none; font-size: 16px; }
+  .btn.primary { background: var(--grad); color: #fff; box-shadow: 0 12px 30px -12px rgba(31, 95, 224, 0.8); }
+  .btn.ghost { color: var(--ink); border: 1px solid var(--line); background: var(--panel); }
+  .soon { font-size: 14px; color: var(--ink-mute); }
+
+  
+  
+  .hero .wrap > *, .split > *, .showcase > * { min-width: 0; }
+  
+  .tablet { width: 100%; position: relative; background: #05070d; border-radius: 26px; padding: 14px; box-shadow: var(--shadow), inset 0 0 0 1px rgba(255, 255, 255, 0.08); }
+  
+  .tablet img { display: block; width: 100%; height: auto; border-radius: 4px; }
+  .hero .tablet { max-width: 440px; justify-self: center; }
+  .tablet.wide { max-width: 980px; margin: 0 auto; }
+
+  
+  section { padding: clamp(56px, 8vw, 110px) 0; }
+  section.alt { background: var(--ground-2); border-block: 1px solid var(--line); }
+  h2 { font-size: clamp(28px, 3.2vw, 42px); line-height: 1.12; letter-spacing: -0.02em; margin: 0 0 14px; }
+  .intro { color: var(--ink-soft); max-width: 40em; margin: 0 0 40px; font-size: 1.08em; }
+  
+  h1, h2, h3, .intro, .lead { text-wrap: balance; }
+
+  .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  @media (max-width: 960px) { .features { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .features { grid-template-columns: 1fr; } }
+  .feature { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
+  .feature .ico { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: color-mix(in srgb, var(--blue) 16%, transparent); color: var(--sky); margin-bottom: 14px; }
+  .feature h3 { margin: 0 0 6px; font-size: 19px; }
+  .feature p { margin: 0; color: var(--ink-soft); font-size: 0.95em; }
+
+  .showcase { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 3vw, 40px); align-items: start; }
+  @media (max-width: 760px) { .showcase { grid-template-columns: 1fr; max-width: 420px; margin-inline: auto; } }
+  .showcase figure { margin: 0; }
+  .showcase figcaption { margin-top: 16px; text-align: center; color: var(--ink-soft); font-size: 0.95em; }
+  .showcase figcaption b { display: block; color: var(--ink); font-size: 1.05em; }
+
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 72px); align-items: center; }
+  @media (max-width: 860px) { .split { grid-template-columns: 1fr; } }
+  .split .tablet { max-width: 400px; justify-self: center; }
+  .checks { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+  .checks li { display: flex; gap: 12px; align-items: flex-start; color: var(--ink-soft); }
+  .checks li::before { content: ""; flex: none; width: 22px; height: 22px; margin-top: 3px; border-radius: 50%; background: var(--grad); -webkit-mask: radial-gradient(circle, #000 60%, transparent 61%); mask: radial-gradient(circle, #000 60%, transparent 61%); }
+  .checks b { color: var(--ink); }
+
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; counter-reset: step; }
+  @media (max-width: 760px) { .steps { grid-template-columns: 1fr; } }
+  .step { counter-increment: step; padding: 24px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--panel); }
+  .step::before { content: counter(step); display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--grad); color: #fff; font-weight: 700; margin-bottom: 14px; }
+  .step h3 { margin: 0 0 6px; font-size: 18px; }
+  .step p { margin: 0; color: var(--ink-soft); font-size: 0.95em; }
+
+  .cta { text-align: center; }
+  .cta .icon { width: 96px; height: 96px; border-radius: 24px; margin: 0 auto 24px; box-shadow: var(--shadow); }
+  .cta .actions { justify-content: center; }
+
+  footer { padding: 40px 0 56px; border-top: 1px solid var(--line); color: var(--ink-mute); font-size: 14px; }
+  footer .wrap { display: grid; gap: 10px; }
+  footer nav { margin: 0; }
+</style>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="../fi/"><img src="../assets/icon-512.png" alt="" width="34" height="34">Stavora</a>
+    <nav>
+      <a class="optional" href="#features">Ominaisuudet</a>
+      <a class="optional" href="#setlists">Settilistat</a>
+      <a href="../fi/docs/">Ohjeet</a>
+      <a href="../fi/privacy.html">Tietosuoja</a>
+      <span class="lang"><a href="../" hreflang="en" onclick="try{localStorage.setItem('stavora-lang','en')}catch(e){}">EN</a><span aria-hidden="true">|</span><a aria-current="true" hreflang="fi">FI</a></span>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">Kuorolaisille ja muusikoille</span>
+        <h1><span>Enemmän <em>nuottia.</em></span> <span>Vähemmän paperia.</span></h1>
+        <p class="lead">Stavora rajaa PDF-nuoteista tyhjät marginaalit pois ja suoristaa vinot skannaukset, jotta nuotti täyttää näytön. Merkitse kynällä ja käännä sivua napautuksella tai pedaalilla – kuoroharjoituksessa, konsertissa tai kotona.</p>
+        <div class="actions">
+          <a class="btn primary" href="#features">Katso ominaisuudet</a>
+          <span class="soon">Tulossa iPadille ja Android-tableteille, toimii myös puhelimissa</span>
+        </div>
+      </div>
+      <div class="tablet"><img src="../assets/screens/pen.jpg" alt="Kynätila: värit, korostuskynät, teksti, pyyhekumi ja kumoa" width="1000" height="1600"></div>
+    </div>
+  </section>
+
+  <section id="features" class="alt">
+    <div class="wrap">
+      <h2>Tehty harjoituksiin ja konsertteihin</h2>
+      <p class="intro">Harjoituksessa nuotin pitää näkyä isona, merkintöjen pysyä tallessa ja sivun kääntyä ilman haparointia. Kaikki muu on toissijaista.</p>
+      <div class="features">
+        <div class="feature">
+          <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 2v14a2 2 0 0 0 2 2h14M18 22V8a2 2 0 0 0-2-2H2"/></svg></div>
+          <h3>Automaattinen rajaus</h3><p>Tyhjät marginaalit rajataan tuonnissa pois, myös skannatuista nuoteista. Reunoille kirjoitetut merkinnät säilyvät, rei'itykset ja roskat jäävät pois. Harmaa skannauspaperi kirkastuu valkoiseksi.</p>
+        </div>
+        <div class="feature">
+          <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></div>
+          <h3>Merkinnät kynällä</h3><p>Kirjoita suoraan nuottiin: neljä väriä, korostuskynä, tekstimerkinnät, pyyhekumi ja kumoa. Aktiivikynällä kirjoitus alkaa heti, sormella käännät sivua. Alkuperäistä PDF:ää ei muuteta.</p>
+        </div>
+        <div class="feature">
+          <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></div>
+          <h3>Settilistat</h3><p>Kokoa konsertin ohjelma raahaamalla. Viimeisen sivun jälkeen auki tulee suoraan seuraava kappale, ja nurkassa näkyy, mitä on tulossa.</p>
+        </div>
+        <div class="feature">
+          <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="14" width="8" height="6" rx="2"/><rect x="13" y="14" width="8" height="6" rx="2"/><path d="M7 14V9a5 5 0 0 1 10 0v5"/></svg></div>
+          <h3>Sivunkääntöpedaalit</h3><p>Bluetooth-pedaalit ja näppäimistöt kääntävät sivua: nuolinäppäimet, Page Up/Down, välilyönti ja Enter.</p>
+        </div>
+        <div class="feature">
+          <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M12 18v-6M9 15l3 3 3-3"/></svg></div>
+          <h3>Tiedostoista ja pilvestä</h3><p>Valitse kerralla useita PDF:iä laitteelta tai pilvipalvelusta, kuten iCloud Drivesta, Google Drivesta tai Dropboxista. PDF:n voi myös avata toisesta sovelluksesta suoraan Stavoraan, ja koko kansion saa tuotua ZIP-tiedostona.</p>
+        </div>
+        <div class="feature">
+          <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></div>
+          <h3>Tabletti ja puhelin</h3><p>Suunniteltu tabletille pystyasentoon, toimii myös puhelimessa. Vaakatasossa tabletti näyttää kaksi sivua, puhelin etenee nuottirivi kerrallaan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Kaikki olennainen, ei mitään ylimääräistä</h2>
+      <p class="intro">Lukiessa näytöllä on vain nuotti. Työkalut tulevat esiin napauttamalla sivun keskeltä, kynätila pitämällä sormea hetken paikallaan.</p>
+      <div class="showcase">
+        <figure>
+          <div class="tablet"><img src="../assets/screens/library.jpg" alt="Kirjasto, jossa nuotit esikatselukuvineen" width="1000" height="1600" loading="lazy"></div>
+          <figcaption><b>Kirjasto</b>Haku, järjestys ja esikatselu.</figcaption>
+        </figure>
+        <figure>
+          <div class="tablet"><img src="../assets/screens/reading.jpg" alt="Nuottisivu pystyasennossa, merkintöinä hengitysmerkki, korostettu sanoitus, ympyröity nuotti ja tekstimerkintä" width="1000" height="1600" loading="lazy"></div>
+          <figcaption><b>Lukutila</b>Vain nuotti ja omat merkinnät.</figcaption>
+        </figure>
+        <figure>
+          <div class="tablet"><img src="../assets/screens/crop.jpg" alt="Skannattu nuotti rajausnäkymässä: sivu suoristettu, reunat vedettävissä" width="1000" height="1600" loading="lazy"></div>
+          <figcaption><b>Rajaus</b>Skannaukset suoristetaan ja rajataan, tarvittaessa käsin.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="landscape" class="alt">
+    <div class="wrap">
+      <h2>Kaksi sivua kerralla</h2>
+      <p class="intro">Käännä tabletti vaakaan, niin näet kaksi sivua rinnakkain ja käännät harvemmin. Merkinnät kulkevat mukana.</p>
+      <div class="tablet wide"><img src="../assets/screens/spread.jpg" alt="Vaakatasossa kaksi sivua rinnakkain" width="1600" height="1000" loading="lazy"></div>
+    </div>
+  </section>
+
+  <section id="setlists">
+    <div class="wrap split">
+      <div>
+        <h2>Konsertti yhtenä nuottina</h2>
+        <p class="intro">Settilistassa kappaleet ovat peräkkäin kuin yhtenä vihkona. Sivua käännetään samalla tavalla koko konsertin ajan.</p>
+        <ul class="checks">
+          <li><span><b>Suoraan seuraavaan.</b> Kappaleen viimeiseltä sivulta eteenpäin avautuu seuraavan kappaleen alku, ja taaksepäin edellisen loppu.</span></li>
+          <li><span><b>Hyppää minne tahansa.</b> Työkalurivillä näkyvät kaikki kappaleet ja sivut.</span></li>
+          <li><span><b>Helppo koota.</b> Valitse kappaleet haluamassasi järjestyksessä ja järjestä niitä raahaamalla. ZIP-tiedostona tuodusta kansiosta saa settilistan suoraan tuonnissa.</span></li>
+        </ul>
+      </div>
+      <div class="tablet"><img src="../assets/screens/setlist-play.jpg" alt="Settilista soitossa: kappaleet ja sivut alareunassa" width="1000" height="1600" loading="lazy"></div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <h2>Näin pääset alkuun</h2>
+      <p class="intro">Ei tilejä, ei rekisteröitymistä.</p>
+      <div class="steps">
+        <div class="step"><h3>Tuo nuotit</h3><p>Valitse PDF:t laitteelta tai pilvipalvelusta, tai avaa ne toisesta sovelluksesta suoraan Stavoraan.</p></div>
+        <div class="step"><h3>Lue ja merkitse</h3><p>Nuotti on valmiiksi rajattu. Merkitse kynällä, mitä johtaja sanoo.</p></div>
+        <div class="step"><h3>Kokoa settilista</h3><p>Konsertissa sivu kääntyy kappaleesta toiseen napautuksella tai pedaalilla.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap split">
+      <div>
+        <h2>Nuottisi pysyvät sinulla</h2>
+        <p class="intro">Stavora toimii kokonaan laitteellasi.</p>
+        <ul class="checks">
+          <li><span>Ei käyttäjätiliä, ei mainoksia eikä seurantaa.</span></li>
+          <li><span>PDF:t ja merkinnät tallentuvat vain laitteelle. Sovellus ei lähetä niitä minnekään.</span></li>
+          <li><span>PDF:t piirtää käyttöjärjestelmän oma PDF-moottori.</span></li>
+          <li><span>Varmuuskopio on yksi ZIP-tiedosto, jonka tallennat itse haluamaasi paikkaan.</span></li>
+        </ul>
+      </div>
+      <div class="tablet"><img src="../assets/screens/settings.jpg" alt="Asetukset: sivun ympärys, napautuskääntö, kynä, tuonti, kieli ja varmuuskopio" width="1000" height="1600" loading="lazy"></div>
+    </div>
+  </section>
+
+  <section class="cta alt">
+    <div class="wrap">
+      <img class="icon" src="../assets/icon-512.png" alt="" width="96" height="96">
+      <h2>Tulossa pian</h2>
+      <p class="intro" style="margin-inline:auto">Stavora on testivaiheessa iPadilla ja Android-tableteilla. Puhelimessakin se toimii, kun tabletti jää kotiin. Kauppoihin se tulee pian.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <nav><a href="../fi/docs/">Ohjeet</a> <a href="../fi/privacy.html">Tietosuoja</a></nav>
+    <span>Kuvakaappausten nuotit: Mutopia Project (mutopiaproject.org). Janequin: Le Chant des Oyseaux, public domain. Mozart, Brahms, Haydn, Humperdinck, Bruch: CC BY 4.0. Bach: CC BY-SA 4.0. Skannattu sivu on Mutopian nuotista tehty simulaatio.</span>
+    <span>© 2026 Stavora</span>
+  </div>
+</footer>
+</body>
+</html>

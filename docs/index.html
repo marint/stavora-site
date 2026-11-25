@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0a1020">
+<title>Stavora – user guide</title>
+<meta name="description" content="How to bring in your scores, read and mark them, build a setlist and make a backup.">
+<link rel="alternate" hreflang="en" href="../docs/">
+<link rel="alternate" hreflang="fi" href="../fi/docs/">
+<link rel="alternate" hreflang="x-default" href="../docs/">
+<style>
+  /* The nav's own size, so its text sits on the same line as the other links */
+  .lang { display: inline-flex; align-items: baseline; gap: 6px; font-size: 15px; font-weight: 600; letter-spacing: 0.04em; }
+  .lang a { color: inherit; opacity: 0.6; text-decoration: none; }
+  .lang a:hover { opacity: 1; }
+  .lang a[aria-current] { opacity: 1; }
+  .lang span { opacity: 0.35; }
+</style>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="../assets/favicon-96.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+</head>
+<body>
+<style>
+  :root { --ink:#eaf1ff; --ink-soft:#b4c3e0; --ground:#0a1020; --panel:#131e3a; --line:#22325a; --sky:#7cc1ff;
+    --f:-apple-system,"SF Pro Text","Segoe UI",Roboto,system-ui,sans-serif; }
+  @media (prefers-color-scheme: light) { :root { --ink:#0f1d3d; --ink-soft:#3a4d75; --ground:#f5f8ff; --panel:#ffffff; --line:#d9e3f6; --sky:#1f5fe0; } }
+  body { margin:0; background:var(--ground); color:var(--ink); font:400 17px/1.65 var(--f); }
+  main { width:min(760px, 100% - 32px); margin:0 auto; padding:48px 0 80px; }
+  a { color:var(--sky); }
+  .brand { display:flex; align-items:center; gap:10px; font-weight:700; text-decoration:none; color:var(--ink); }
+  .brand img { width:34px; height:34px; border-radius:9px; }
+  h1 { font-size:clamp(32px,4vw,44px); margin:36px 0 4px; letter-spacing:-0.02em; }
+  h2 { font-size:24px; margin:44px 0 6px; scroll-margin-top:16px; }
+  h3 { font-size:18px; margin:22px 0 2px; }
+  p, li { color:var(--ink-soft); }
+  li { margin:4px 0; }
+  .toc li { margin:0 0 6px; break-inside:avoid; }
+  b { color:var(--ink); font-weight:600; }
+  .lead { margin:0 0 24px; }
+  .toc { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:14px 20px; }
+  .toc ol { margin:0; padding-left:20px; columns:2 220px; }
+  .tip { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:12px 16px; }
+  footer { margin-top:48px; padding-top:20px; border-top:1px solid var(--line); }
+  .top { display:flex; align-items:center; justify-content:space-between; gap:16px; }
+</style>
+<main>
+  <div class="top"><a class="brand" href="../"><img src="../assets/icon-512.png" alt="" width="34" height="34">Stavora</a><span class="lang"><a aria-current="true" hreflang="en">EN</a><span aria-hidden="true">|</span><a href="../fi/docs/" hreflang="fi" onclick="try{localStorage.setItem('stavora-lang','fi')}catch(e){}">FI</a></span></div>
+  <h1>User guide</h1>
+  <p class="lead">Stavora works without accounts or setup. Here is everything it does, including the things you might not spot at first.</p>
+  <nav class="toc" aria-label="Contents">
+    <ol>
+      <li><a href="#import">Importing scores</a></li>
+      <li><a href="#reading">Reading</a></li>
+      <li><a href="#marking">Markings</a></li>
+      <li><a href="#crop">Crop and straighten</a></li>
+      <li><a href="#setlists">Setlists</a></li>
+      <li><a href="#library">Library</a></li>
+      <li><a href="#backup">Backup and a new device</a></li>
+    </ol>
+  </nav>
+  <h2 id="import">Importing scores</h2>
+  <p>In the library, tap <b>Import</b> and pick PDF files. You can pick several at once, and they all come into the library together. On Android, press and hold the first file, tap the others and tap <b>Select</b>. The back gesture leaves the picker.</p><h3>Cloud services</h3><p>Import shows the device's own folders and every cloud service whose app is installed, such as iCloud Drive, Google Drive, Dropbox or OneDrive.</p><p>On iPad and iPhone, iCloud Drive is there from the start. Other services are turned on in the Files app: open the <b>•••</b> menu of the sidebar, choose <b>Edit Sidebar</b> and switch the service on under Locations. On Android, they are in the file picker already. Folders shared with you are under <b>Shared with me</b> in Google Drive.</p><h3>From another app</h3><p>Open a PDF in Drive, Dropbox, your email or Files, for example, and choose <b>Open in app</b> or <b>Share → Stavora</b>. On Android, you can share several PDFs at once. The score opens right away.</p><h3>A whole folder at once</h3><p>Bring the folder in as a ZIP file. Google Drive and Dropbox pack a folder into a ZIP when you download it, and in the Files app you can choose <b>Compress</b>. The scores come in the folder's order, and the app offers to make them a setlist named after the folder.</p><p class="tip">Importing the same file again makes no copy: it opens the score already in the library, markings and all.</p>
+  <h2 id="reading">Reading</h2>
+  <ul><li><b>Turning pages:</b> tap the right or left edge of the page, or swipe sideways. The width of the edges can be adjusted in the settings.</li><li><b>Tools:</b> tap the middle of the page. All the pages show along the bottom, and you can jump straight to any of them.</li><li><b>Zoom:</b> pinch. Scroll a zoomed page with one finger, and double-tap to see the whole page again.</li><li><b>In landscape</b> a tablet shows two pages side by side. On a phone the page fills the width and turns move on one line of music at a time.</li><li><b>Closing:</b> the back arrow, or a long swipe up. Opened again within two hours, a score carries on from the same page; later it starts from the beginning.</li><li><b>Pedals:</b> Bluetooth page-turn pedals and keyboards work without setup: arrow keys, Page Up/Down, Space and Enter.</li></ul><p>The app remembers where you left off, and the screen stays on while you read.</p>
+  <h2 id="marking">Markings</h2>
+  <p>Pen mode opens from the pen button in the toolbar, or by holding a finger still on the page for a moment. You get a pen in four colours, a highlighter, text (<b>Aa</b>), an eraser and undo. You can change pages in pen mode too. Close it with <b>✓</b>.</p><h3>Text</h3><p>Choose <b>Aa</b> and tap where you want the text. Type straight onto the score. Tap existing text to edit it, and drag it to move it.</p><h3>With a stylus, no pen mode needed</h3><p>With an active stylus (Apple Pencil, Tab Pen and the like) you can write straight onto the page while reading: the stylus draws and a finger turns the page. An <b>Undo</b> button appears for a moment to take back the last marking. In pen mode you can set <b>Only the stylus draws</b>, so a finger never draws by accident.</p><p class="tip">Markings are saved separately, and the original PDF is never changed.</p>
+  <h2 id="crop">Crop and straighten</h2>
+  <p>When importing, the app crops away the empty margins and straightens pages that were scanned crooked. Notes written in the margins are kept, and hole punches and specks are left out.</p><p>Adjust the crop by hand from the crop button in the toolbar. Drag the edges: the same crop applies to all pages. Turn a crooked page with the arrows, 0.1° at a time. <b>Automatic</b> redoes the crop and straightening, and <b>Reset</b> shows the whole page. If you don't want the crop on import, you can turn it off in the settings.</p>
+  <h2 id="setlists">Setlists</h2>
+  <p>Open <b>Setlists</b> in the library and choose <b>New setlist</b>. Tap the pieces in the order they are sung. Change the order by dragging the handle on the right of a row. You can also add scores to a setlist from the library: one by pressing and holding it, several at once with <b>Select several</b>.</p><p>When you tap <b>Play</b>, the pieces run on like one booklet: after the last page comes the start of the next piece. On a piece's last page the corner shows what comes next, and the toolbar lets you jump to any piece.</p>
+  <h2 id="library">Library</h2>
+  <p>In the library you can search scores by name and sort them alphabetically or by when they were last opened. The button next to the search field shows the scores as a list instead of thumbnails. A long list in A–Z order has the alphabet down its right edge: tap a letter or slide a finger over them.</p><p>Press and hold a score to rename it, add it to a setlist or delete it. Deleting a score deletes its markings too.</p><h3>Several at once</h3><p>Choose <b>Select several</b> from the same menu and tap the scores. The selected ones can be deleted or added to a setlist, a new one too. Scores already in the setlist are not added twice.</p><p>The settings (the gear) include the language, the colour around the page, the tap-to-turn edges and the pen options.</p>
+  <h2 id="backup">Backup and a new device</h2>
+  <p>Choose <b>Settings → Backup → Make a backup</b>. Scores, markings, setlists and settings are packed into one ZIP file, which you can save to Files, iCloud Drive or Google Drive, for example.</p><p>To restore, import the ZIP with <b>Import</b>. A restore only adds the scores and setlists the library is missing; nothing already in the library is changed or deleted.</p><p class="tip">An iCloud backup of an iPhone or iPad includes Stavora's data automatically, so it comes back when you set up a new device from that backup. The data does not sync between devices. Android's automatic backup is limited to a small size, so make a backup yourself there.</p>
+  <footer><a href="../">Back to the home page</a></footer>
+</main>
+</body>
+</html>
