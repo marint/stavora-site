@@ -108,6 +108,18 @@
   
   .tablet img { display: block; width: 100%; height: auto; border-radius: 4px; }
   .hero .tablet { max-width: 440px; justify-self: center; }
+  
+  .hero-art { position: relative; width: 100%; max-width: 470px; justify-self: center; }
+  .hero-art .tablet { width: 82%; margin-left: auto; }
+  .phone { position: absolute; left: 0; bottom: 2%; width: 38%; background: #05070d; border-radius: 30px; padding: 7px; transform: rotate(-6deg); box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.9), inset 0 0 0 1px rgba(255, 255, 255, 0.1); }
+  .phone img { display: block; width: 100%; height: auto; border-radius: 24px; }
+  
+  @media (max-width: 860px) {
+    .hero-art { max-width: 380px; }
+    .hero-art .tablet { width: 68%; margin: 0 0 0 10%; padding: 8px; border-radius: 20px; }
+    .phone { left: auto; right: 4%; bottom: auto; top: 16%; width: 29%; padding: 5px; border-radius: 22px; transform: rotate(5deg); }
+    .phone img { border-radius: 17px; }
+  }
   .tablet.wide { max-width: 980px; margin: 0 auto; }
 
   
@@ -184,7 +196,10 @@
           <span class="soon">Coming to iPad and Android tablets, works on phones too</span>
         </div>
       </div>
-      <div class="tablet"><img src="./assets/screens/pen.jpg" alt="Pen mode: colours, highlighters, text, eraser and undo" width="1000" height="1600"></div>
+      <div class="hero-art">
+        <div class="tablet"><img src="./assets/screens/hero.jpg" alt="A score page with a highlight, pen markings and a note above a boxed passage" width="1000" height="1600"></div>
+        <div class="phone"><img src="./assets/screens/hero-phone.jpg" alt="The metronome on a phone" width="360" height="800"></div>
+      </div>
     </div>
   </section>
 
@@ -203,11 +218,11 @@
         </div>
         <div class="feature">
           <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
-          <h3>Share with the choir or band</h3><p>The setlist, scores and markings in one package, and updates as markings only. Everyone’s own markings stay.</p>
+          <h3>Share with the choir or band</h3><p>The setlist, scores and markings in one package, updates as markings only, or the marked pages as a PDF anyone can open. Everyone’s own markings stay.</p>
         </div>
       </div>
       <ul class="minor">
-        <li><b>Passages to practise</b> Mark with the flag what needs work. The library lists those scores with one tap and opens each at the right page.</li>
+        <li><b>Notes on the score</b> Box a passage and write a note beside it, over a line break or a page turn too. The library lists the scores with notes and opens each at the right page.</li>
         <li><b>Pen markings</b> Write straight onto the score: four colours, a highlighter, text notes, an eraser and undo. With an active stylus you just start writing; your finger turns the page. The original PDF is never changed.</li>
         <li><b>Pitch and metronome</b> The starting note from a keyboard and a metronome set by turning a wheel or by tapping, floating over the score. Each piece keeps its own tempo, and the sounds play with the silent switch on too.</li>
         <li><b>Page-turn pedals</b> Bluetooth pedals and keyboards turn pages: arrow keys, Page Up/Down, Space and Enter.</li>
@@ -225,11 +240,11 @@
       <p class="intro">The conductor marks the passages to practise and shares the setlist with the markings. Everyone gets them in their own scores, and their own markings stay their own.</p>
       <div class="showcase">
         <figure>
-          <div class="tablet"><img src="./assets/screens/practice.jpg" alt="A passage to practise marked with an orange box and a flag, its note in a bubble" width="1000" height="1600" loading="lazy"></div>
-          <figcaption><b>Passages to practise.</b> A passage marked with the flag is a tap away in the library, and gone again once practised.</figcaption>
+          <div class="tablet"><img src="./assets/screens/practice.jpg" alt="A passage boxed in orange with a flag, its note in a bubble" width="1000" height="1600" loading="lazy"></div>
+          <figcaption><b>Passages to practise.</b> A passage with a note is a tap away in the library, and gone again once practised.</figcaption>
         </figure>
         <figure>
-          <div class="tablet"><img src="./assets/screens/share.jpg" alt="Sharing a setlist: scores and markings, or markings only" width="1000" height="1600" loading="lazy"></div>
+          <div class="tablet"><img src="./assets/screens/share.jpg" alt="Sharing a setlist: scores and markings, markings only, a link or QR code, or the marked pages as PDF" width="1000" height="1600" loading="lazy"></div>
           <figcaption><b>Share with the choir or band.</b> The whole package for the start of the season in Drive, the week’s updates in WhatsApp. No account, no server.</figcaption>
         </figure>
         <figure>

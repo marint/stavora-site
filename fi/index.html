@@ -107,6 +107,18 @@
   
   .tablet img { display: block; width: 100%; height: auto; border-radius: 4px; }
   .hero .tablet { max-width: 440px; justify-self: center; }
+  
+  .hero-art { position: relative; width: 100%; max-width: 470px; justify-self: center; }
+  .hero-art .tablet { width: 82%; margin-left: auto; }
+  .phone { position: absolute; left: 0; bottom: 2%; width: 38%; background: #05070d; border-radius: 30px; padding: 7px; transform: rotate(-6deg); box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.9), inset 0 0 0 1px rgba(255, 255, 255, 0.1); }
+  .phone img { display: block; width: 100%; height: auto; border-radius: 24px; }
+  
+  @media (max-width: 860px) {
+    .hero-art { max-width: 380px; }
+    .hero-art .tablet { width: 68%; margin: 0 0 0 10%; padding: 8px; border-radius: 20px; }
+    .phone { left: auto; right: 4%; bottom: auto; top: 16%; width: 29%; padding: 5px; border-radius: 22px; transform: rotate(5deg); }
+    .phone img { border-radius: 17px; }
+  }
   .tablet.wide { max-width: 980px; margin: 0 auto; }
 
   
@@ -183,7 +195,10 @@
           <span class="soon">Tulossa iPadille ja Android-tableteille, toimii myös puhelimissa</span>
         </div>
       </div>
-      <div class="tablet"><img src="../assets/screens/pen.jpg" alt="Kynätila: värit, korostuskynät, teksti, pyyhekumi ja kumoa" width="1000" height="1600"></div>
+      <div class="hero-art">
+        <div class="tablet"><img src="../assets/screens/hero.jpg" alt="Nuottisivu, jossa korostus, kynämerkintöjä ja rajatun kohdan muistiinpano" width="1000" height="1600"></div>
+        <div class="phone"><img src="../assets/screens/hero-phone.jpg" alt="Metronomi puhelimessa" width="360" height="800"></div>
+      </div>
     </div>
   </section>
 
@@ -202,11 +217,11 @@
         </div>
         <div class="feature">
           <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
-          <h3>Jaa kuorolle tai bändille</h3><p>Settilista, nuotit ja merkinnät yhdessä paketissa, päivitykset pelkkinä merkintöinä. Jokaisen omat merkinnät säilyvät.</p>
+          <h3>Jaa kuorolle tai bändille</h3><p>Settilista, nuotit ja merkinnät yhdessä paketissa, päivitykset pelkkinä merkintöinä tai merkityt sivut PDF:nä, jonka kuka tahansa voi avata. Jokaisen omat merkinnät säilyvät.</p>
         </div>
       </div>
       <ul class="minor">
-        <li><b>Harjoiteltavat kohdat</b> Merkitse lipulla kohdat, joita pitää treenata. Kirjasto näyttää ne yhdellä napautuksella ja avaa suoraan oikean sivun.</li>
+        <li><b>Muistiinpanot nuottiin</b> Rajaa kohta laatikolla ja kirjoita muistiinpano viereen, tarvittaessa rivin- tai sivunvaihdon yli. Kirjasto näyttää kappaleet, joissa on muistiinpanoja, ja avaa suoraan oikean sivun.</li>
         <li><b>Merkinnät kynällä</b> Kirjoita suoraan nuottiin: neljä väriä, korostuskynä, tekstimerkinnät, pyyhekumi ja kumoa. Aktiivikynällä kirjoitus alkaa heti, sormella käännät sivua. Alkuperäistä PDF:ää ei muuteta.</li>
         <li><b>Sävel ja metronomi</b> Aloitussävel koskettimilta ja metronomi, jonka tempo asetetaan kiertämällä tai napauttamalla, nuotin päällä kelluvassa paneelissa. Jokainen kappale muistaa oman temponsa, ja äänet kuuluvat myös äänettömällä.</li>
         <li><b>Sivunkääntöpedaalit</b> Bluetooth-pedaalit ja näppäimistöt kääntävät sivua: nuolinäppäimet, Page Up/Down, välilyönti ja Enter.</li>
@@ -224,11 +239,11 @@
       <p class="intro">Kuoronjohtaja merkitsee harjoiteltavat kohdat ja jakaa settilistan merkintöineen. Jokainen saa ne omaan nuottiinsa, ja omat merkinnät pysyvät omina.</p>
       <div class="showcase">
         <figure>
-          <div class="tablet"><img src="../assets/screens/practice.jpg" alt="Harjoiteltava kohta merkittynä oranssilla laatikolla ja lipulla, kuplassa muistiinpano" width="1000" height="1600" loading="lazy"></div>
-          <figcaption><b>Harjoiteltavat kohdat.</b> Lipulla merkitty kohta löytyy kirjastosta yhdellä napautuksella, ja sen saa pois, kun se on harjoiteltu.</figcaption>
+          <div class="tablet"><img src="../assets/screens/practice.jpg" alt="Kohta rajattuna oranssilla laatikolla ja lipulla, kuplassa muistiinpano" width="1000" height="1600" loading="lazy"></div>
+          <figcaption><b>Harjoiteltavat kohdat.</b> Kohta, jossa on muistiinpano, löytyy kirjastosta yhdellä napautuksella, ja sen saa pois, kun se on harjoiteltu.</figcaption>
         </figure>
         <figure>
-          <div class="tablet"><img src="../assets/screens/share.jpg" alt="Settilistan jako: nuotit ja merkinnät tai vain merkinnät" width="1000" height="1600" loading="lazy"></div>
+          <div class="tablet"><img src="../assets/screens/share.jpg" alt="Settilistan jako: nuotit ja merkinnät, pelkät merkinnät, linkki tai QR-koodi tai merkityt sivut PDF:nä" width="1000" height="1600" loading="lazy"></div>
           <figcaption><b>Jaa kuorolle tai bändille.</b> Koko paketti kauden alkuun vaikka Driveen, viikon päivitykset WhatsAppiin. Ei tiliä eikä palvelinta.</figcaption>
         </figure>
         <figure>
